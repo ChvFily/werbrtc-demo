@@ -52,6 +52,9 @@ io.sockets.on('connection', (socket) => {
       socket.emit('full', room); //发送 "full" 消息
       zt = 'joining Room '+room+'failed! room is full!';
     }
+    
+    clientsInRoom = io.sockets.adapter.rooms[room];
+    numClients = clientsInRoom ? Object.keys(clientsInRoom.sockets).length : 0; //房间里的人数 // 统计当前的房间人数
     log(zt +' Room ' + room + ' has ' + numClients + ' client(s) now'); //打印服务器发送到客户端的代码
 
 
